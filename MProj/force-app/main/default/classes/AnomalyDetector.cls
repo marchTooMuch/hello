@@ -1,5 +1,5 @@
 public with sharing class AnomalyDetector {
-
+    Privet Bobdan
     public Anomaly_Range_Configuration__c anomalyRandeSetting;
     public AnomalyDetector() {
         this.anomalyRandeSetting = Anomaly_Range_Configuration__c.getOrgDefaults();
