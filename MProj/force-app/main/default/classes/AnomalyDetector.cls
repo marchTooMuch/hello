@@ -1,11 +1,15 @@
 public with sharing class AnomalyDetector {
-    Privet Bobdan
+
     public Anomaly_Range_Configuration__c anomalyRandeSetting;
     public AnomalyDetector() {
         this.anomalyRandeSetting = Anomaly_Range_Configuration__c.getOrgDefaults();
     }
+    public AnomalyDetector(Anomaly_Range_Configuration__c arc) {
+        this.anomalyRandeSetting = arc;
+    }
 
     public  List<Anomaly__c> detectAnomaly(List<Weather__c> weathers) {
+        System.debug(anomalyRandeSetting.Max_Pressure__c);
         Set<ID> weathersId = new Set<ID>();
         for(Weather__c weather:weathers) {
             weathersId.add(weather.Id);
@@ -20,6 +24,7 @@ public with sharing class AnomalyDetector {
                 anomaliesToSave.add(anomaly);
             }
              if(weather.Pressure__c>=anomalyRandeSetting.Max_Pressure__c||weather.Pressure__c<=anomalyRandeSetting.Min_Pressure__c) {
+                 System.debug('jskdlkjlkal;ksadfjals;kdjf');
             	Anomaly__c anomaly = new Anomaly__c(City__c=weather.City__c,City_Name__c = weather.City__r.Name,
                                                     Reported__c = false, Weather__c = weather.Id, Type__c = 'Pressure Anomaly');
                 anomaliesToSave.add(anomaly);
