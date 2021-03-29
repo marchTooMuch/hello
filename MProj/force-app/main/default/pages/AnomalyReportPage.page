@@ -1,5 +1,43 @@
-<apex:page renderAs="pdf">
-    <h1>
-        Anomaly Report
-    </h1>
+<apex:page renderAs="pdf" applyHtmlTag="false" showHeader="false" controller="AnomalyReportPageController">
+    <head>
+        <style>
+            table,th,td {
+            border: 1px black solid;
+            }
+            h1 {
+            text-align:center;
+            }
+        </style>
+   </head>
+    <body>
+    	<h1>Anomaly Report</h1>
+        <p>Period StartDate - EndDate</p>
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Temperature Anomalies</th>
+                <th>Pressure Anomalies</th>
+                <th>Humidity Anomalies</th>
+            </tr>
+            <tr>
+                <th>Toronto</th>
+                <th>{!TorontoHumidity}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Vancuver</th>
+                <th>?</th>
+                <th>?</th>
+                <th>?</th>
+            </tr>
+            <tr>
+                <th>Montreal</th>
+                <th>?</th>
+                <th>?</th>
+                <th>?</th>
+            </tr>
+        </table>
+        
+    </body>
 </apex:page>
