@@ -11,7 +11,7 @@
    </head>
     <body>
     	<h1>Anomaly Report</h1>
-        <p>Period StartDate - EndDate</p>
+        <p>Period {!StartDate} - EndDate</p>
         <table>
             <tr>
                 <th>City</th>
@@ -21,21 +21,21 @@
             </tr>
             <tr>
                 <th>Toronto</th>
+                <th>{!TorontoTemperature}</th>
+                <th>{!TorontoPressure}</th>
                 <th>{!TorontoHumidity}</th>
-                <th></th>
-                <th></th>
             </tr>
             <tr>
                 <th>Vancuver</th>
-                <th>?</th>
-                <th>?</th>
-                <th>?</th>
+                <th>{!VancuverTemperature}</th>
+                <th>{!VancuverPressure}</th>
+                <th>{!VancuverHumidity}</th>
             </tr>
             <tr>
                 <th>Montreal</th>
-                <th>?</th>
-                <th>?</th>
-                <th>?</th>
+                <th>{!MontrealTemperature}</th>
+                <th>{!MontrealPressure}</th>
+                <th>{!MontrealHumidity}</th>
             </tr>
         </table>
         
