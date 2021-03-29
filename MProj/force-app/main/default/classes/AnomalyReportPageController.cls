@@ -14,6 +14,8 @@ public without sharing class AnomalyReportPageController {
     Integer MontrealHumidity;
     Integer MontrealPressure;
     Integer MontrealTemperature;
+    String  TotalIs;
+    Integer Total = 0;
     AnomalyReportPageController arpc {get;set;}
     public AnomalyReportPageController() {
         Toronto.put('Temperature Anomaly', 0);
@@ -24,10 +26,11 @@ public without sharing class AnomalyReportPageController {
         Vancuver.put('Pressure Anomaly', 0);
         Montreal.put('Temperature Anomaly', 0);
         Montreal.put('Humidity Anomaly', 0);
-        Montreal.put('Pressure Anomaly', 0);
+        Montreal.put('Pressure Anomaly', 0);	
 		anomalies = [SELECT City_Name__c , Type__c FROM Anomaly__c ];
         AggregateResult data = [SELECT MIN(CreatedDate) min, MAX(CreatedDate) max from Anomaly__c];
         StartDate = String.valueOf(data.get('min'));
+        EndDate = String.valueOf(data.get('max'));
  
         for(Anomaly__c anomaly:anomalies) {
             switch on anomaly.City_Name__c {
@@ -52,7 +55,13 @@ public without sharing class AnomalyReportPageController {
         MontrealHumidity = Vancuver.get('Humidity Anomaly');
         MontrealPressure = Montreal.get('Pressure Anomaly');
         MontrealTemperature = Montreal.get('Temperature Anomaly');
-        
+        Total = TorontoHumidity + TorontoPressure + TorontoTemperature + VancuverHumidity + VancuverPressure
+            + VancuverTemperature + MontrealHumidity + MontrealPressure + MontrealTemperature;
+        if(Total==0) {
+            TotalIs = 'No anomaly detected';
+        } else {
+            TotalIs = 'Total: '+Total;   
+        }
         
     }
     public void putAnom(Map<String,Integer> m,String s) {
@@ -71,6 +80,7 @@ public without sharing class AnomalyReportPageController {
                 m.put('Pressure Anomaly',++a);
             }
         }
+        
     }
     public Integer getTorontoHumidity() {
         return TorontoHumidity;
@@ -99,7 +109,13 @@ public without sharing class AnomalyReportPageController {
     public Integer getMontrealTemperature() {
         return MontrealTemperature;
     }
+    public String getTotalIs() {
+        return TotalIs;
+    }
     public String getStartDate() {
         return StartDate;
+	}
+    public String getEndDate() {
+        return EndDate;
     }
 }
