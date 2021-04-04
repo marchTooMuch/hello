@@ -62,7 +62,6 @@ public without sharing class AnomalyReportPageController {
         } else {
             TotalIs = 'Total: '+Total;   
         }
-        
     }
     public void putAnom(Map<String,Integer> m,String s) {
         Integer a = 0;
