@@ -1,0 +1,16 @@
+<aura:component implements="force:AppHostable">
+    <aura:attribute name="Iteration" type="String[]" default="['All','Reported']"/>
+    <aura:attribute name = "Attr" type = "String" default = "All"/>
+	 <lightning:card  title="Hello" iconName="utility:desktop">
+        <aura:set attribute="actions">
+            <lightning:button label="New"/>
+        </aura:set>
+         <div class="slds-p-around_medium lgc-bg">
+            <lightning:buttonMenu alternativeText="Show menu" variant="border-filled" onselect = "{!c.handleSelect}" >
+                <aura:iteration items="{!v.Iteration}" var="item">
+        			<lightning:menuItem value="{!item}" label="{!item}" />
+    			</aura:iteration>
+            </lightning:buttonMenu>
+        </div>
+    </lightning:card>
+</aura:component>
